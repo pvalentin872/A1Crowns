@@ -1,13 +1,12 @@
-import { HeroSection } from "./components/HeroSection";
-import { VeneersFixSection } from "./components/VeneersFixSection";
-import { PackagesSection } from "./components/PackagesSection";
-import { BeforeAfterSection } from "./components/BeforeAfterSection";
-import { WhyChooseSection } from "./components/WhyChooseSection";
-import { HowItWorksSection } from "./components/HowItWorksSection";
-import { TestimonialsSection } from "./components/TestimonialsSection";
-import { FinalCTASection } from "./components/FinalCTASection";
-import { FooterSection } from "./components/FooterSection";
-import { StickyBar } from "./components/StickyBar";
+import { HeroSection } from "./components/1-HeroSection";
+import { VeneersFixSection } from "./components/2-VeneersFixSection";
+import { PackagesSection } from "./components/3-PackagesSection";
+import { BeforeAfterSection } from "./components/4-BeforeAfterSection";
+import { WhyChooseSection } from "./components/5-WhyChooseSection";
+import { HowItWorksSection } from "./components/6-HowItWorksSection";
+import { TestimonialsSection } from "./components/7-TestimonialsSection";
+import { FinalCTASection } from "./components/8-FinalCTASection";
+import { FooterSection } from "./components/10-FooterSection";
 
 export default function App() {
   return (
@@ -53,12 +52,9 @@ export default function App() {
         <FinalCTASection />
 
         {/* 9. Footer — extra bottom padding for sticky bar */}
-        <div style={{ paddingBottom: "76px" }}>
+        <div style={{ paddingBottom: "40px" }}>
           <FooterSection />
         </div>
-
-        {/* Sticky CTA bar */}
-        <StickyBar />
       </div>
     </>
   );

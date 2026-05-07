@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { QuoteModal } from "./QuoteModal";
-import { Phone } from "lucide-react";
 
 export function StickyBar() {
   const [show, setShow] = useState(false);
