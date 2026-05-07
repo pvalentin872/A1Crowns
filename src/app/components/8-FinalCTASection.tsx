@@ -167,7 +167,7 @@ export function FinalCTASection() {
                     className="text-[16px]"
                     style={{
                       fontFamily: "Lato, sans-serif",
-                      color: "rgba(249,249,249,0.)",
+                      color: "rgba(249,249,249,0.9)",
                     }}
                   >
                     {label}
