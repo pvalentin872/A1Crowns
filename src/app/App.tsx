@@ -6,6 +6,7 @@ import { WhyChooseSection } from "./components/5-WhyChooseSection";
 import { HowItWorksSection } from "./components/6-HowItWorksSection";
 import { TestimonialsSection } from "./components/7-TestimonialsSection";
 import { FinalCTASection } from "./components/8-FinalCTASection";
+import { FaqsSection } from "./components/9-FaqsSection";
 import { FooterSection } from "./components/10-FooterSection";
 import { Navbar } from "./components/Navbar";
 
@@ -57,7 +58,10 @@ export default function App() {
           {/* 8. Final CTA */}
           <FinalCTASection />
 
-          {/* 9. Footer — extra bottom padding for sticky bar */}
+          {/* 9. Faqs */}
+          <FaqsSection />
+
+          {/* 10. Footer — extra bottom padding for sticky bar */}
           <div style={{ paddingBottom: "40px" }}>
             <FooterSection />
           </div>

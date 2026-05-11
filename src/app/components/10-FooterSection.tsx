@@ -12,6 +12,24 @@ import {
 export function FooterSection() {
   const [submitted, setSubmitted] = useState(false);
 
+  const phoneNumbers = [
+  {
+    label: "USA",
+    number: "+1 (888) 981-2138",
+    href: "tel:+18889812138",
+  },
+  {
+    label: "MEXICO",
+    number: "+52 (998) 387-0239",
+    href: "tel:+529983870239",
+  },
+  {
+    label: "CANADA",
+    number: "+1 (888) 551-0905",
+    href: "tel:+18885510905",
+  },
+];
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -164,85 +182,105 @@ export function FooterSection() {
                 Direct Contact
               </h4>
 
-              <div className="flex flex-col gap-4">
-                {/* Phone */}
-                <div className="flex gap-4">
-                  <div
-                    className="w-11 h-11 rounded-[6px] flex items-center justify-center shrink-0"
-                    style={{
-                      backgroundColor: "rgba(165,142,85,0.12)",
-                    }}
-                  >
-                    <Phone
-                      size={18}
-                      strokeWidth={1.5}
-                      color="#A58E55"
-                    />
+              <div className="flex flex-col gap-4 items-align-center">
+                  {/* Phone */}
+                  <div className="flex flex-row md:flex-row md:items-start gap-4">
+                    <div
+                        className="w-11 h-11 rounded-[6px] flex items-center justify-center shrink-0"
+                        style={{
+                          backgroundColor: "rgba(165,142,85,0.12)",
+                        }}
+                      >
+                        <Phone
+                          size={18}
+                          strokeWidth={1.5}
+                          color="#A58E55"
+                        />
+                    </div>
+                    {phoneNumbers.map((phone, index) => (
+                        <div
+                          key={index}
+                          className="flex flex-row items-center gap-0 md:gap-4"
+                        >
+                          {/* Phone block */}
+                          <div className="">
+                            <p
+                              className="text-[13px] uppercase mb-1"
+                              style={{
+                                fontFamily: "Lato, sans-serif",
+                                color: "#A58E55",
+                              }}
+                            >
+                              {phone.label}
+                            </p>
+                            <a
+                              href={phone.href}
+                              className="text-[14px] hover:opacity-80 transition-opacity"
+                              style={{
+                                fontFamily: "Lato, sans-serif",
+                                color: "rgba(249,249,249,0.9)",
+                              }}
+                            >
+                              <u>{phone.number}</u>
+                            </a>
+                          </div>
+
+                          {/* Divider */}
+                          {index < phoneNumbers.length - 1 && (
+                            <>
+                              <div
+                                className="h-[40px] w-[1px]"
+                                style={{
+                                  backgroundColor: "rgba(255,255,255,0.3)",
+                                }}
+                              />
+                            </>
+                          )}
+                        </div>
+                    ))}
                   </div>
 
-                  <div>
-                    <p
-                      className="text-[13px] uppercase mb-1"
+                  {/* Email */}
+                  <div className="flex gap-4">
+                    <div
+                      className="w-11 h-11 rounded-[6px] flex items-center justify-center shrink-0"
                       style={{
-                        fontFamily: "Lato, sans-serif",
-                        color: "#A58E55",
+                        backgroundColor: "rgba(165,142,85,0.12)",
                       }}
                     >
-                      Phone
-                    </p>
+                      <Mail
+                        size={18}
+                        strokeWidth={1.5}
+                        color="#A58E55"
+                      />
+                    </div>
 
-                    <p
-                      className="text-[16px]"
-                      style={{
-                        fontFamily: "Lato, sans-serif",
-                        color: "rgba(249,249,249,0.9)",
-                      }}
-                    >
-                      +1 (888) 981-2138
-                    </p>
+                    <div>
+                      <p
+                        className="text-[13px] uppercase mb-1"
+                        style={{
+                          fontFamily: "Lato, sans-serif",
+                          color: "#A58E55",
+                        }}
+                      >
+                        Email
+                      </p>
+
+                      <a
+                        href="mailto:smile@a1smiledesign.com"
+                        className="text-[14px] hover:opacity-80 transition-opacity"
+                        style={{
+                          fontFamily: "Lato, sans-serif",
+                          color: "rgba(249,249,249,0.9)",
+                        }}
+                      >
+                        <u>smile@a1smiledesign.com</u>
+                      </a>
+                    </div>
                   </div>
-                </div>
 
-                {/* Email */}
-                <div className="flex gap-4">
-                  <div
-                    className="w-11 h-11 rounded-[6px] flex items-center justify-center shrink-0"
-                    style={{
-                      backgroundColor: "rgba(165,142,85,0.12)",
-                    }}
-                  >
-                    <Mail
-                      size={18}
-                      strokeWidth={1.5}
-                      color="#A58E55"
-                    />
-                  </div>
-
-                  <div>
-                    <p
-                      className="text-[13px] uppercase mb-1"
-                      style={{
-                        fontFamily: "Lato, sans-serif",
-                        color: "#A58E55",
-                      }}
-                    >
-                      Email
-                    </p>
-
-                    <p
-                      className="text-[16px]"
-                      style={{
-                        fontFamily: "Lato, sans-serif",
-                        color: "rgba(249,249,249,0.9)",
-                      }}
-                    >
-                      info@a1smiledesign.com
-                    </p>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div className="flex gap-4">
+                  {/* Location */}
+                  <div className="flex gap-4">
                   <div
                     className="w-11 h-11 rounded-[6px] flex items-center justify-center shrink-0"
                     style={{
@@ -267,15 +305,18 @@ export function FooterSection() {
                       Location
                     </p>
 
-                    <p
+                    <a
                       className="text-[16px]"
+                      href="https://maps.app.goo.gl/jY8nPPyHP1L4efJy5"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       style={{
                         fontFamily: "Lato, sans-serif",
                         color: "rgba(249,249,249,0.9)",
                       }}
                     >
-                       Playa del Carmen, Quintana Roo, Mexico
-                    </p>
+                      <u> Mz 08, Lote 07 en 20 Av. Sur, Col. Aviación entre Calle Primera Sur y Av. Benito Juárez, CP: 77713, Playa del Carmen, Quintana Roo, Mexico.</u>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -629,7 +670,7 @@ export function FooterSection() {
         <div
           className="h-[1px] mb-6"
           style={{
-            backgroundColor: "rgba(255,255,255,0.06)",
+            backgroundColor: "rgba(255,255,255,0.2)",
           }}
         />
 
