@@ -268,7 +268,7 @@ export function FooterSection() {
 
                       <a
                         href="mailto:smile@a1smiledesign.com"
-                        className="text-[14px] hover:opacity-80 transition-opacity"
+                        className="text-[16px] hover:opacity-80 transition-opacity"
                         style={{
                           fontFamily: "Lato, sans-serif",
                           color: "rgba(249,249,249,0.9)",
