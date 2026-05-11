@@ -56,47 +56,6 @@ export function HeroSection() {
           }}
         />
 
-        {/* Top logo bar */}
-        <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between pt-8 px-6 md:px-10 lg:px-16">
-          <div>
-            <p
-              className="tracking-[0.22em] text-[10px] md:text-[11px] uppercase"
-              style={{
-                fontFamily: "Lato, sans-serif",
-                color: "#A58E55",
-              }}
-            >
-              PREMIUM DENTAL TOURISM
-            </p>
-            <p
-              className="text-[24px] md:text-[30px] tracking-[0.08em] uppercase"
-              style={{
-                fontFamily: "Oswald, sans-serif",
-                color: "#F9F9F9",
-                fontWeight: 700,
-              }}
-            >
-              A1 SMILE DESIGN
-            </p>
-          </div>
-          {/* Desktop nav CTA */}
-          <button
-            onClick={() => setModalOpen(true)}
-            className="hidden md:flex items-center gap-2 px-6 h-[44px] rounded-[6px] transition-all hover:opacity-90"
-            style={{
-              background:
-                "linear-gradient(135deg, #C4A96A, #A58E55)",
-              color: "#F9F9F9",
-              fontFamily: "Lato, sans-serif",
-              fontSize: "14px",
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-            }}
-          >
-            FREE QUOTE
-          </button>
-        </div>
-
         {/* Main content — desktop 2-col, mobile single col */}
         <div
           className="absolute inset-0 flex items-end z-10"
