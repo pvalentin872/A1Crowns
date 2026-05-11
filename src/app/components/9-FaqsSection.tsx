@@ -4,58 +4,58 @@ import { ChevronDown } from "lucide-react";
 const FAQS = [
   {
     id: 1,
-    question: "What are porcelain veneers?",
+    question: "Why do patients choose to get veneers in Mexico?",
     answer:
-      "Porcelain veneers are ultra-thin, custom-made shells designed to cover the front surface of your teeth. They mimic the natural look of enamel, correcting imperfections such as discoloration, chips, gaps, and minor misalignment for an instantly transformed smile.",
+      "Patients choose to get veneers in Mexico, getting veneers in Mexico, and dental veneers Mexico because they can access premium cosmetic dentistry at lower prices. Whether you're searching for Dental Veneers Cancun, Porcelain Veneers Cancun, or the best place to get veneers in Mexico, many patients travel for expert smile design, natural-looking results, and personalized care.",
   },
   {
     id: 2,
-    question: "How long do veneers last?",
+    question: "How much are veneers in Mexico?",
     answer:
-      "With proper care — regular brushing, flossing, and routine dental visits — porcelain veneers can last 10 to 15 years or more. At A1 Smile Design, we use high-quality materials and advanced bonding techniques to ensure maximum durability.",
+      "Many patients ask how much are veneers in Mexico, how much is veneers in Mexico, or how much veneers cost in Mexico before starting treatment. The final veneers Mexico price depends on the number of veneers, the material selected, and your smile goals. Dental veneers in Mexico often cost significantly less than in the U.S. while maintaining premium quality.",
   },
   {
     id: 3,
-    question: "Is the procedure painful?",
+    question: "How much do veneers cost in Mexico?",
     answer:
-      "Most patients experience little to no discomfort. The procedure is performed under local anesthesia, and our team prioritizes your comfort at every stage. Any mild sensitivity after treatment typically subsides within a few days.",
+      "If you're researching how much do veneers cost in Mexico, how much does veneers cost in Mexico, or cost of veneers in Mexico, pricing varies depending on treatment complexity, dentist expertise, and veneer material. Patients comparing veneers cost in Mexico often find premium porcelain options at exceptional value.",
   },
   {
     id: 4,
-    question: "How many appointments are needed?",
+    question: "How much do porcelain veneers cost in Mexico?",
     answer:
-      "The full process usually requires two to three visits. The first is a consultation and digital smile design, the second is tooth preparation and temporary veneers, and the third is the final placement of your custom porcelain veneers.",
+      "Patients looking for how much do porcelain veneers cost in Mexico, how much are porcelain veneers in Mexico, porcelain veneers cost Mexico, or porcelain veneers Mexico cost often choose porcelain because of its natural appearance, durability, and long-term results. Porcelain veneers in Mexico remain one of the most requested cosmetic dental treatments.",
   },
   {
     id: 5,
-    question: "Do veneers stain over time?",
+    question: "How much is a full set of veneers in Mexico?",
     answer:
-      "Porcelain is highly resistant to staining. However, the bonding edges can accumulate pigment over time if oral hygiene is neglected. We recommend avoiding excessive consumption of coffee, tea, and tobacco to keep your veneers looking their best.",
+      "If you're asking how much is a full set of veneers in Mexico, full set veneers cost Mexico, or full set of veneers cost Mexico, treatment depends on how many teeth are included in your smile makeover. Patients researching veneers in Mexico cost often choose full smile transformations for maximum aesthetic impact.",
   },
   {
     id: 6,
-    question: "What is the cost of veneers at A1 Smile Design?",
+    question: "Is it safe to get veneers in Mexico?",
     answer:
-      "Our pricing is competitive and significantly lower than in the US or Canada, without compromising quality. Contact us for a personalized quote — we offer transparent pricing with no hidden fees and flexible payment options.",
+      "A common question is is it safe to get veneers in Mexico. The answer depends on choosing the best dentist in Mexico for veneers with proven experience, modern technology, and high-quality materials. Top providers offering Dental Veneers Mexico and Porcelain Veneers Mexico follow international standards for cosmetic dentistry.",
   },
   {
     id: 7,
-    question: "Can I finance my veneer treatment?",
+    question: "How do I find the best dentist in Mexico for veneers?",
     answer:
-      "Yes. We offer financing options to make your smile transformation accessible. Speak with our team during your consultation to find a plan that fits your budget.",
+      "If you're searching for the best dentist in Mexico for veneers or the best place to get veneers in Mexico, look for experience in smile design, before-and-after cases, patient reviews, and expertise with porcelain veneers in Mexico. Leading clinics in Cancun specialize in natural-looking, customized smile transformations.",
   },
   {
     id: 8,
-    question: "How do I care for my veneers after treatment?",
+    question: "Are veneers in Mexico really worth it?",
     answer:
-      "Care for your veneers just like natural teeth — brush twice a day, floss daily, and visit your dentist regularly. Avoid using your teeth as tools (opening packages, biting nails) and consider a night guard if you grind your teeth.",
+      "Patients comparing veneers in Mexico price, veneers Mexico price, cheapest veneers in Mexico, or even offers like $2500 veneers Cancun often discover that value goes beyond price. Choosing dental veneers Cancun, Porcelain Veneers Mexico, or get veneers in Mexico means balancing affordability, quality, aesthetics, and long-term durability.",
   },
 ];
 
 export function FaqsSection() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const [openId, setOpenId] = useState<number | null>(null);
+  const [openId, setOpenId] = useState<number | null>(FAQS[0].id);
 
   const toggle = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
@@ -82,7 +82,7 @@ export function FaqsSection() {
             transition: "opacity 0.7s ease, transform 0.7s ease",
           }}
         >
-          <h2
+          <p
             className="uppercase tracking-[0.18em] mb-2 text-[14px] text-center"
             style={{
               fontFamily: "Lato, sans-serif",
@@ -90,8 +90,8 @@ export function FaqsSection() {
             }}
           >
             Frequently Asked Questions
-          </h2>
-          <h3
+          </p>
+          <h2
             className="text-[36px] md:text-[44px] leading-[1.1] mb-10 text-center"
             style={{
               fontFamily: "Oswald, sans-serif",
@@ -103,7 +103,7 @@ export function FaqsSection() {
             <span style={{ fontWeight: 700, color: "#C4A96A" }}>
               Know
             </span>
-          </h3>
+          </h2>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -128,13 +128,18 @@ export function FaqsSection() {
                       : "1px solid rgba(0,0,0,0.05)",
                     fontFamily: "Oswald, sans-serif",
                     color: "#21201E",
-                    fontWeight: 400,
                     fontSize: "18px",
-                    letterSpacing: "0.02em",
                   }}
                   aria-expanded={isOpen}
                 >
-                  <span className="pr-4">{faq.question}</span>
+                  <h3 
+                  className="pr-4"
+                  style={{
+                    fontWeight: isOpen ? 600 : 400,
+                  }}>
+                    {faq.question}
+                  </h3>
+
                   <ChevronDown
                     size={18}
                     strokeWidth={2}
