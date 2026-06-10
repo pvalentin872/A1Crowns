@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import imgTower from "../../imports/A1_tower_collage_2-1.webp";
 import imgDental from "../../imports/a1web-digital_design.webp";
 import imgTech from "../../imports/6_montaje_3.2.1-1.webp";
+import { useInView } from "../../hooks/useInView";
 
 const ROWS = [
   {
@@ -46,8 +47,7 @@ const ROWS = [
 ];
 
 export function WhyChooseSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const { ref, visible } = useInView(0.08);
   const [currentSlide, setCurrentSlide] = useState(0);
   const touchStartX = useRef(0);
 
@@ -59,17 +59,6 @@ export function WhyChooseSection() {
     if (diff > 50) setCurrentSlide((p) => Math.min(p + 1, ROWS.length - 1));
     if (diff < -50) setCurrentSlide((p) => Math.max(p - 1, 0));
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.08 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section
@@ -97,7 +86,7 @@ export function WhyChooseSection() {
               color: "#A58E55",
             }}
           >
-            Dental Veneers Cancun with A1 Smile Design
+            Best Dentist in Mexico for Crowns
           </h2>
           <h3
             className="text-[36px] md:text-[44px] leading-[1.1] mb-4"
@@ -107,11 +96,11 @@ export function WhyChooseSection() {
               fontWeight: 300,
             }}
           >
-            Why{" "}
+            Trusted Care{" "}
             <span style={{ fontWeight: 700, color: "#C4A96A" }}>
-              Thousands
-            </span>{" "}
-            Choose Us
+               for Natural Lasting Results
+            </span>
+            
           </h3>
           <p
             className="text-[18px] md:text-[20px] leading-[1.1] mx-auto"
@@ -122,7 +111,7 @@ export function WhyChooseSection() {
               maxWidth: "700px",
             }}
           >
-            Patients looking for the best dentist in Mexico for veneers choose A1 Smile Design for advanced technology, artistic precision, personalized treatment plans, and exceptional porcelain veneers results in Cancun.
+            Patients choose A1 Smile Design for experienced specialists, advanced technology, and natural-looking results that last.
           </p>
         </div>
 
@@ -218,67 +207,61 @@ export function WhyChooseSection() {
              </div>
           </div>
 
-          {/* ── DESKTOP: Vertical stack ── */}
-          {ROWS.map((row, i) => (
-            <div
-              key={row.id}
-              className="hidden md:flex overflow-hidden rounded-[8px] md:flex-row"
-              style={{
-                backgroundColor: "rgba(249,249,249,0.04)",
-                border: "1px solid rgba(165,142,85,0.12)",
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(28px)",
-                transition: `opacity 0.65s ease ${0.1 + i * 0.15}s, transform 0.65s ease ${0.1 + i * 0.15}s`,
-              }}
-            >
-              {/* Image */}
+          {/* ── DESKTOP: 3-column grid ── */}
+          <div className="hidden md:grid grid-cols-3 gap-5 md:gap-6">
+            {ROWS.map((row, i) => (
               <div
-                className={`relative w-full h-[240px] md:h-auto md:w-1/2 shrink-0 ${
-                  row.imageLeft ? "md:order-1" : "md:order-2"
-                } order-1`}
+                key={row.id}
+                className="flex flex-col overflow-hidden rounded-[8px]"
+                style={{
+                  backgroundColor: "rgba(249,249,249,0.04)",
+                  border: "1px solid rgba(165,142,85,0.12)",
+                  opacity: visible ? 1 : 0,
+                  transform: visible ? "translateY(0)" : "translateY(28px)",
+                  transition: `opacity 0.65s ease ${0.1 + i * 0.15}s, transform 0.65s ease ${0.1 + i * 0.15}s`,
+                }}
               >
-                <img
-                  src={row.image}
-                  alt={row.headingParts.map((p) => p.text).join("")}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              {/* Text */}
-              <div
-                className={`flex-1 flex flex-col justify-center gap-2 p-6 md:p-8 ${
-                  row.imageLeft ? "md:order-2" : "md:order-1"
-                } order-2`}
-              >
-                <p
-                  className="uppercase tracking-[0.15em] text-[10px]"
-                  style={{ fontFamily: "Lato, sans-serif", color: "#A58E55" }}
-                >
-                  {row.tagline}
-                </p>
-                <h4
-                  className="text-[22px] md:text-[24px] leading-[1.2]"
-                  style={{ fontFamily: "Oswald, sans-serif", color: "#F9F9F9" }}
-                >
-                  {row.headingParts.map((part, j) => (
-                    <span key={j} style={{ fontWeight: part.weight }}>{part.text}</span>
-                  ))}
-                </h4>
-                <div className="flex flex-col gap-3 mt-1">
-                  {row.body.map((para, j) => (
-                    <p
-                      key={j}
-                      className="text-[15px] md:text-[16px] leading-[1.65]"
-                      style={{ fontFamily: "Lato, sans-serif", fontWeight: 300, color: "rgba(249,249,249,0.75)" }}
-                    >
-                      {para}
-                    </p>
-                  ))}
+                {/* Image */}
+                <div className="relative w-full h-[200px] shrink-0">
+                  <img
+                    src={row.image}
+                    alt={row.headingParts.map((p) => p.text).join("")}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                {/* Text */}
+                <div className="flex flex-col justify-center gap-2 p-5">
+                  <p
+                    className="uppercase tracking-[0.15em] text-[10px]"
+                    style={{ fontFamily: "Lato, sans-serif", color: "#A58E55" }}
+                  >
+                    {row.tagline}
+                  </p>
+                  <h4
+                    className="text-[20px] leading-[1.2]"
+                    style={{ fontFamily: "Oswald, sans-serif", color: "#F9F9F9" }}
+                  >
+                    {row.headingParts.map((part, j) => (
+                      <span key={j} style={{ fontWeight: part.weight }}>{part.text}</span>
+                    ))}
+                  </h4>
+                  <div className="flex flex-col gap-3 mt-1">
+                    {row.body.map((para, j) => (
+                      <p
+                        key={j}
+                        className="text-[14px] leading-[1.6]"
+                        style={{ fontFamily: "Lato, sans-serif", fontWeight: 300, color: "rgba(249,249,249,0.75)" }}
+                      >
+                        {para}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
         </div>
 

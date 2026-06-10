@@ -1,23 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { QuoteModal } from "./QuoteModal";
 import bgbanner from "../../imports/bg_banner_01.webp";
 import bgbannermobile from "../../imports/bg_banner_mobile.webp";
+import { useInView } from "../../hooks/useInView";
 
 export function FinalCTASection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const { ref, visible } = useInView(0.15);
   const [quoteOpen, setQuoteOpen] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.15 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
@@ -25,27 +14,20 @@ export function FinalCTASection() {
         ref={ref}
         className="relative w-full overflow-hidden"
       >
-        {/* Background */}
+        {/* Background con <picture> */}
         <div className="absolute inset-0">
-           <img
-             src={bgbannermobile}
-             alt="Playa del Carmen luxury"
-             className="block md:hidden w-full h-full object-cover"
-             style={{
-               animation: "kenBurns2 18s ease-in-out infinite alternate",
-               transformOrigin: "center bottom",
-             }}
-           />
-           {/* Desktop */}
-           <img
-             src={bgbanner}
-             alt="Playa del Carmen luxury"
-            className="hidden md:block w-full h-full object-cover"
-            style={{
-              animation: "kenBurns2 18s ease-in-out infinite alternate",
-              transformOrigin: "center bottom",
-            }}
-          />
+          <picture>
+            <source media="(max-width: 767px)" srcSet={bgbannermobile} />
+            <img
+              src={bgbanner}
+              alt="Playa del Carmen luxury"
+              className="w-full h-full object-cover"
+              style={{
+                animation: "kenBurns2 18s ease-in-out infinite alternate",
+                transformOrigin: "center bottom",
+              }}
+            />
+          </picture>
         </div>
 
         {/* Gradient */}

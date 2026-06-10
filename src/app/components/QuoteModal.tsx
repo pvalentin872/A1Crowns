@@ -85,9 +85,6 @@ export function QuoteModal({
       message: form.message,
     };
 
-    console.log("Quote Modal Submission:");
-    console.log(JSON.stringify(formData, null, 2));
-
     setSubmitted(true);
   };
 

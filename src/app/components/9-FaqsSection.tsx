@@ -1,76 +1,89 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useInView } from "../../hooks/useInView";
 
 const FAQS = [
   {
     id: 1,
-    question: "Why do patients choose to get veneers in Mexico?",
+    question: "How much do crowns cost in Mexico?",
     answer:
-      "Patients choose to get veneers in Mexico, getting veneers in Mexico, and dental veneers Mexico because they can access premium cosmetic dentistry at lower prices. Whether you're searching for Dental Veneers Cancun, Porcelain Veneers Cancun, or the best place to get veneers in Mexico, many patients travel for expert smile design, natural-looking results, and personalized care.",
+      "The cost of dental crowns in Mexico depends on the material used, the number of crowns needed, and the complexity of treatment. Patients often save significantly compared to U.S. pricing while receiving high-quality restorative care. Crowns in Mexico can be an affordable solution for restoring damaged teeth and achieving a natural-looking smile.",
   },
   {
     id: 2,
-    question: "How much are veneers in Mexico?",
+    question: "How much is a dental crown in Mexico?",
     answer:
-      "Many patients ask how much are veneers in Mexico, how much is veneers in Mexico, or how much veneers cost in Mexico before starting treatment. The final veneers Mexico price depends on the number of veneers, the material selected, and your smile goals. Dental veneers in Mexico often cost significantly less than in the U.S. while maintaining premium quality.",
+      "A dental crown in Mexico is generally much more affordable than in the United States. During your consultation, we provide a personalized estimate based on your smile goals and restorative needs.",
   },
   {
     id: 3,
-    question: "How much do veneers cost in Mexico?",
+    question: "How much does a crown cost in Mexico?",
     answer:
-      "If you're researching how much do veneers cost in Mexico, how much does veneers cost in Mexico, or cost of veneers in Mexico, pricing varies depending on treatment complexity, dentist expertise, and veneer material. Patients comparing veneers cost in Mexico often find premium porcelain options at exceptional value.",
+      "The final price depends on factors such as materials, dental condition, and whether additional procedures are required. We focus on transparent pricing and premium-quality care.",
   },
   {
     id: 4,
-    question: "How much do porcelain veneers cost in Mexico?",
+    question: "What is the average cost of a dental crown in Mexico?",
     answer:
-      "Patients looking for how much do porcelain veneers cost in Mexico, how much are porcelain veneers in Mexico, porcelain veneers cost Mexico, or porcelain veneers Mexico cost often choose porcelain because of its natural appearance, durability, and long-term results. Porcelain veneers in Mexico remain one of the most requested cosmetic dental treatments.",
+      "The average cost of a dental crown in Mexico is considerably lower than U.S. dental fees, making it one of the most popular treatments for international dental patients.",
   },
   {
     id: 5,
-    question: "How much is a full set of veneers in Mexico?",
+    question: "How much are crowns in Mexico?",
     answer:
-      "If you're asking how much is a full set of veneers in Mexico, full set veneers cost Mexico, or full set of veneers cost Mexico, treatment depends on how many teeth are included in your smile makeover. Patients researching veneers in Mexico cost often choose full smile transformations for maximum aesthetic impact.",
+      "Patients choose Mexico because crowns are significantly more affordable while maintaining excellent quality standards and modern dental technology.",
   },
   {
     id: 6,
-    question: "Is it safe to get veneers in Mexico?",
+    question: "Is getting crowns in Mexico safe?",
     answer:
-      "A common question is is it safe to get veneers in Mexico. The answer depends on choosing the best dentist in Mexico for veneers with proven experience, modern technology, and high-quality materials. Top providers offering Dental Veneers Mexico and Porcelain Veneers Mexico follow international standards for cosmetic dentistry.",
+      "Yes. Receiving dental crowns in Mexico is safe when treatment is performed by experienced specialists using advanced technology and high-quality materials. We prioritize patient safety, comfort, and satisfaction throughout the entire process.",
   },
   {
     id: 7,
-    question: "How do I find the best dentist in Mexico for veneers?",
+    question: "What is included in the dental crown cost in Mexico?",
     answer:
-      "If you're searching for the best dentist in Mexico for veneers or the best place to get veneers in Mexico, look for experience in smile design, before-and-after cases, patient reviews, and expertise with porcelain veneers in Mexico. Leading clinics in Cancun specialize in natural-looking, customized smile transformations.",
+      "Your treatment may include consultation, digital imaging, crown preparation, temporary restorations, and final crown placement depending on your personalized treatment plan.",
   },
   {
     id: 8,
-    question: "Are veneers in Mexico really worth it?",
+    question: "How much is a root canal and crown in Mexico?",
     answer:
-      "Patients comparing veneers in Mexico price, veneers Mexico price, cheapest veneers in Mexico, or even offers like $2500 veneers Cancun often discover that value goes beyond price. Choosing dental veneers Cancun, Porcelain Veneers Mexico, or get veneers in Mexico means balancing affordability, quality, aesthetics, and long-term durability.",
+      "The price of a root canal and crown in Mexico depends on the tooth condition and complexity of treatment. Combining procedures in Mexico is often significantly more affordable than in the U.S.",
+  },
+   {
+    id: 9,
+    question: "How much does a root canal and crown cost in Mexico?",
+    answer:
+      "Treatment costs vary by case, but patients frequently choose Mexico for restorative procedures due to lower costs and access to highly experienced dental professionals.",
+  },
+   {
+    id: 10,
+    question: "What are the benefits of getting dental crowns in Mexico?",
+    answer:
+      "Benefits include lower treatment costs, shorter wait times, high-quality materials, experienced specialists, and the opportunity to restore your smile at a fraction of U.S. prices.",
+  },
+   {
+    id: 11,
+    question: "Who is the best dentist in Mexico for crowns?",
+    answer:
+      "The best provider is one with experience in restorative dentistry, proven patient results, modern technology, and transparent treatment planning. Reviewing before-and-after cases and patient testimonials can help guide your decision.",
+  },
+   {
+    id: 12,
+    question: "Can I get full mouth crowns in Mexico?",
+    answer:
+      "Yes. Patients looking for full smile rehabilitation often explore full mouth crowns in Mexico because of the affordability and access to comprehensive restorative treatment plans.",
   },
 ];
 
 export function FaqsSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const { ref, visible } = useInView(0.08);
   const [openId, setOpenId] = useState<number | null>(FAQS[0].id);
 
   const toggle = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.08 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section ref={ref} style={{ backgroundColor: "#FFFFFF" }}>
@@ -89,7 +102,7 @@ export function FaqsSection() {
               color: "#A58E55",
             }}
           >
-            Frequently Asked Questions
+            Dental Crowns in Mexico FAQs
           </p>
           <h2
             className="text-[36px] md:text-[44px] leading-[1.1] mb-10 text-center"
@@ -103,6 +116,7 @@ export function FaqsSection() {
             <span style={{ fontWeight: 700, color: "#C4A96A" }}>
               Know
             </span>
+            
           </h2>
         </div>
 

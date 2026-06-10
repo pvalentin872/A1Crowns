@@ -1,27 +1,71 @@
+import { lazy, Suspense } from "react";
 import { HeroSection } from "./components/1-HeroSection";
-import { VeneersFixSection } from "./components/2-VeneersFixSection";
-import { PackagesSection } from "./components/3-PackagesSection";
-import { BeforeAfterSection } from "./components/4-BeforeAfterSection";
-import { WhyChooseSection } from "./components/5-WhyChooseSection";
-import { HowItWorksSection } from "./components/6-HowItWorksSection";
-import { TestimonialsSection } from "./components/7-TestimonialsSection";
-import { FinalCTASection } from "./components/8-FinalCTASection";
-import { FaqsSection } from "./components/9-FaqsSection";
-import { FooterSection } from "./components/10-FooterSection";
+import { CrownsFixSection } from "./components/2-CrownsFixSection";
 import { Navbar } from "./components/Navbar";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+
+const PackagesSection = lazy(() =>
+  import("./components/3-PackagesSection").then((m) => ({
+    default: m.PackagesSection,
+  })),
+);
+const BeforeAfterSection = lazy(() =>
+  import("./components/4-BeforeAfterSection").then((m) => ({
+    default: m.BeforeAfterSection,
+  })),
+);
+const BannerRestorative = lazy(() =>
+  import("./components/11-BannerRestorative").then((m) => ({
+    default: m.BannerRestorative,
+  })),
+);
+const WhyChooseSection = lazy(() =>
+  import("./components/5-WhyChooseSection").then((m) => ({
+    default: m.WhyChooseSection,
+  })),
+);
+const HowItWorksSection = lazy(() =>
+  import("./components/6-HowItWorksSection").then((m) => ({
+    default: m.HowItWorksSection,
+  })),
+);
+const TestimonialsSection = lazy(() =>
+  import("./components/7-TestimonialsSection").then((m) => ({
+    default: m.TestimonialsSection,
+  })),
+);
+const BannerCosmetic = lazy(() =>
+  import("./components/12-BannerCosmetic").then((m) => ({
+    default: m.BannerCosmetic,
+  })),
+);
+const FaqsSection = lazy(() =>
+  import("./components/9-FaqsSection").then((m) => ({
+    default: m.FaqsSection,
+  })),
+);
+const FooterSection = lazy(() =>
+  import("./components/10-FooterSection").then((m) => ({
+    default: m.FooterSection,
+  })),
+);
+
+function SectionFallback() {
+  return (
+    <div
+      className="w-full"
+      style={{ height: "200px", backgroundColor: "#0F0F0F" }}
+    />
+  );
+}
 
 export default function App() {
   return (
     <>
       <style>{`
-        /* Scrollbar hiding utility */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* Tap highlight removal */
         * { -webkit-tap-highlight-color: transparent; }
-
-        /* Smooth scroll */
         html { scroll-behavior: smooth; }
       `}</style>
 
@@ -29,43 +73,68 @@ export default function App() {
         className="relative w-full min-h-screen"
         style={{ backgroundColor: "#0F0F0F", fontFamily: "Lato, sans-serif" }}
       >
-        {/* Fixed Navbar */}
         <Navbar />
 
-        {/* 1. Hero */}
         <HeroSection />
 
-        {/* Sections after hero need top padding to clear fixed navbar */}
-        <div className="pt-[64px] md:pt-[80px]">
-          {/* 2. What Veneers Fix */}
-          <VeneersFixSection />
+        <CrownsFixSection />
 
-          {/* 3. Packages */}
-          <PackagesSection />
+        <ErrorBoundary>
+          <Suspense fallback={<SectionFallback />}>
+            <PackagesSection />
+          </Suspense>
+        </ErrorBoundary>
 
-          {/* 4. Before & After */}
-          <BeforeAfterSection />
+        <ErrorBoundary>
+          <Suspense fallback={<SectionFallback />}>
+            <BeforeAfterSection />
+          </Suspense>
+        </ErrorBoundary>
 
-          {/* 5. Why Choose A1 */}
-          <WhyChooseSection />
+        <ErrorBoundary>
+          <Suspense fallback={<SectionFallback />}>
+            <BannerRestorative />
+          </Suspense>
+        </ErrorBoundary>
 
-          {/* 6. How It Works */}
-          <HowItWorksSection />
+        <ErrorBoundary>
+          <Suspense fallback={<SectionFallback />}>
+            <WhyChooseSection />
+          </Suspense>
+        </ErrorBoundary>
 
-          {/* 7. Testimonials */}
-          <TestimonialsSection />
+        <ErrorBoundary>
+          <Suspense fallback={<SectionFallback />}>
+            <HowItWorksSection />
+          </Suspense>
+        </ErrorBoundary>
 
-          {/* 8. Final CTA */}
-          <FinalCTASection />
+        <ErrorBoundary>
+          <Suspense fallback={<SectionFallback />}>
+            <TestimonialsSection />
+          </Suspense>
+        </ErrorBoundary>
 
-          {/* 9. Faqs */}
-          <FaqsSection />
+        <ErrorBoundary>
+          <Suspense fallback={<SectionFallback />}>
+            <BannerCosmetic />
+          </Suspense>
+        </ErrorBoundary>
 
-          {/* 10. Footer — extra bottom padding for sticky bar */}
-          <div style={{ paddingBottom: "40px" }}>
-            <FooterSection />
-          </div>
-        </div>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionFallback />}>
+            <FaqsSection />
+          </Suspense>
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <Suspense fallback={<SectionFallback />}>
+            <div style={{ paddingBottom: "40px" }}>
+              <FooterSection />
+            </div>
+          </Suspense>
+        </ErrorBoundary>
+
       </div>
     </>
   );

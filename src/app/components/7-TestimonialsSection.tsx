@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { QuoteModal } from "./QuoteModal";
+import { useInView } from "../../hooks/useInView";
 
 const VIDEOS = [
-  { id: "KShzYg-RASo" },
-  { id: "3_st3ytrdRQ" },
-  { id: "lxUgDlG93yc" },
-  { id: "k6i7NvQKBpI" },
+  { id: "iSgbuUj9KFU" },
+  { id: "y0crF_q26MI" },
+  { id: "EVIrUQX5q_M" },
+  { id: "UAUPL6ya_Dg" },
 ];
 
 function buildSrc(id: string) {
@@ -14,23 +15,11 @@ function buildSrc(id: string) {
 }
 
 export function TestimonialsSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const { ref, visible } = useInView();
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.1 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   const prev = () =>
     setCurrentIndex((i) =>
@@ -79,7 +68,7 @@ export function TestimonialsSection() {
                 color: "#A58E55",
               }}
             >
-              Dental Veneers Mexico Reviews
+            Dental Crowns in Mexico Reviews
             </h2>
             <h3
               className="text-[36px] md:text-[48px] leading-[1.1] mb-4"
@@ -89,11 +78,11 @@ export function TestimonialsSection() {
                 fontWeight: 300,
               }}
             >
-              Stories Behind{" "}
+              Real Stories From Happy{" "} <br></br>
               <span
                 style={{ fontWeight: 700, color: "#A58E55" }}
               >
-                 Every Smile
+                 Smile Transformations
               </span>
             </h3>
             <p
@@ -105,7 +94,7 @@ export function TestimonialsSection() {
                 maxWidth: "560px",
               }}
             >
-              See dental veneers Mexico reviews from patients who got porcelain veneers in Cancun.
+              Hear from patients who trusted us for dental crowns in Mexico and achieved life-changing smile results.
             </p>
           </div>
 

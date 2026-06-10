@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Phone, Camera, FileText, Plane } from "lucide-react";
 import { QuoteModal } from "./QuoteModal";
-
+import { useInView } from "../../hooks/useInView";
 import patternTile from "../../imports/Patterns_Tile.webp";
 
 type LucideIcon = React.ComponentType<{
@@ -56,20 +56,8 @@ const STEPS: {
 ];
 
 export function HowItWorksSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const { ref, visible } = useInView();
   const [quoteOpen, setQuoteOpen] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.1 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
@@ -118,7 +106,7 @@ export function HowItWorksSection() {
                 color: "#A58E55",
               }}
             >
-              How to Get Veneers in Mexico
+              Getting Dental Crowns in Mexico – Step-by-Step
             </h2>
             <h3
               className="text-[36px] md:text-[48px] leading-[1.1] mb-4"
@@ -128,11 +116,11 @@ export function HowItWorksSection() {
                 fontWeight: 300,
               }}
             >
-              Simple, Fast, and {" "}
+              A Simple Way to  {" "}
               <span
                 style={{ fontWeight: 700, color: "#A58E55" }}
               >
-                Stress-Free
+                Restore Your Smile
               </span>
             </h3>
             <p
@@ -144,7 +132,7 @@ export function HowItWorksSection() {
                 maxWidth: "700px",
               }}
             >
-              Getting veneers in Mexico is simple. From virtual consultation to smile design and final placement, our Cancun veneers process delivers efficient treatment, expert guidance, and stunning natural-looking results.
+             Getting dental crowns in Mexico is simple. From consultation to treatment, we provide a smooth, stress-free experience every step of the way.
             </p>
           </div>
 

@@ -86,9 +86,6 @@ export function FooterSection() {
       message: form.message,
     };
 
-    console.log("Footer Form Submission:");
-    console.log(JSON.stringify(formData, null, 2));
-
     setSubmitted(true);
   };
 

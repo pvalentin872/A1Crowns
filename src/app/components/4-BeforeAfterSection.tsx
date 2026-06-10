@@ -1,40 +1,39 @@
 import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { QuoteModal } from "./QuoteModal";
+import { useInView } from "../../hooks/useInView";
 
 // ─── Local patient images ───────────────────────────────────────────────────
-import before01 from "../../imports/veneers_patient_before_01.webp";
-import after01 from "../../imports/veneers_patient_after_01.webp";
+import before01 from "../../imports/crowns_patient_before_01.webp";
+import after01 from "../../imports/crowns_patient_after_01.webp";
 
-import before02 from "../../imports/veneers_patient_before_02.webp";
-import after02 from "../../imports/veneers_patient_after_02.webp";
+import before02 from "../../imports/crowns_patient_before_02.webp";
+import after02 from "../../imports/crowns_patient_after_02.webp";
 
-import before03 from "../../imports/veneers_patient_before_03.webp";
-import after03 from "../../imports/veneers_patient_after_03.webp";
+import before03 from "../../imports/crowns_patient_before_03.webp";
+import after03 from "../../imports/crowns_patient_after_03.webp";
 
-import before04 from "../../imports/veneers_patient_before_04.webp";
-import after04 from "../../imports/veneers_patient_after_04.webp";
+import before04 from "../../imports/crowns_patient_before_04.webp";
+import after04 from "../../imports/crowns_patient_after_04.webp";
 
-import before05 from "../../imports/veneers_patient_before_05.webp";
-import after05 from "../../imports/veneers_patient_after_05.webp";
+import before05 from "../../imports/crowns_patient_before_05.webp";
+import after05 from "../../imports/crowns_patient_after_05.webp";
 
-import before06 from "../../imports/veneers_patient_before_06.webp";
-import after06 from "../../imports/veneers_patient_after_06.webp";
+import before06 from "../../imports/crowns_patient_before_06.webp";
+import after06 from "../../imports/crowns_patient_after_06.webp";
 
-import bgheader from "../../imports/bg-marble.webp";
+import bgheader from "../../imports/white_marble_bg.webp";
 // ───────────────────────────────────────────────────────────────────────────
 
 const TRANSFORMATIONS = [
   {
     id: 1,
-    label: "Charlann B.",
     treatment: "Porcelain Veneers",
     before: before01,
     after: after01,
   },
   {
     id: 2,
-    label: "Jeremy F.",
     treatment: "Emax Makeover",
     // Replace with: before: before02, after: after02
     before: before02,
@@ -42,7 +41,6 @@ const TRANSFORMATIONS = [
   },
   {
     id: 3,
-    label: "Erika M.",
     treatment: "Porcelain Veneers",
     // Replace with: before: before03, after: after03
     before: before03,
@@ -50,7 +48,6 @@ const TRANSFORMATIONS = [
   },
   {
     id: 4,
-    label: "Chris B.",
     treatment: "Emax Veneers",
     // Replace with: before: before04, after: after04
     before: before04,
@@ -58,7 +55,6 @@ const TRANSFORMATIONS = [
   },
   {
     id: 5,
-    label: "Katerina K.",
     treatment: "Emax Veneers",
     // Replace with: before: before05, after: after05
     before: before05,
@@ -66,7 +62,6 @@ const TRANSFORMATIONS = [
   },
   {
     id: 6,
-    label: "Elena M.",
     treatment: "Zirconia Veneers",
     // Replace with: before: before05, after: after05
     before: before06,
@@ -84,8 +79,8 @@ function FullscreenModal({
   if (!item) return null;
   return (
     <div
-      className="fixed inset-0 z-[999] flex flex-col items-center justify-center p-4"
-      style={{ backgroundColor: "rgba(0,0,0,0.95)" }}
+      className="fixed inset-0 z-[999] flex flex-row items-center justify-center p-4"
+      style={{ backgroundColor: "rgba(0,0,0,0.90)" }}
       onClick={onClose}
     >
        <button
@@ -97,64 +92,39 @@ function FullscreenModal({
         <X size={32} strokeWidth={1.5} color="#F9F9F9" />
       </button>
       <div
-        className="w-full max-w-[640px]"
+        className="w-full max-w-[800px]"
         onClick={(e) => e.stopPropagation()}
       >
         <p
-          className="text-center mb-4 uppercase tracking-[0.12em] text-[11px]"
+          className="text-center mb-4 uppercase tracking-[0.12em] text-[12px]"
           style={{
+            fontWeight: 600,
             fontFamily: "Lato, sans-serif",
             color: "#A58E55",
           }}
         >
-          {item.treatment} — {item.label}
+          {item.treatment}
         </p>
-        <div className="grid grid-cols-2 gap-3">
-            <div
-              className="relative rounded-[12px] overflow-hidden"
-              style={{ height: "min(55vh, 420px)" }}
-            >
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+            <div className="relative rounded-[12px] overflow-hidden w-full aspect-[4/3]">
               <img
                 src={item.before}
                 alt="Before"
-                className="absolute inset-0 w-full h-full object-cover object-top"
+                className="absolute inset-0 w-full h-full object-cover object-center"
                 loading="lazy"
                 decoding="async"
               />
-            <div
-              className="absolute bottom-0 left-0 right-0 py-2 text-center text-[12px] uppercase tracking-wider"
-              style={{
-                fontFamily: "Lato, sans-serif",
-                backgroundColor: "rgba(0,0,0,0.6)",
-                color: "#ccc",
-                fontWeight: 700,
-              }}
-            >
-              BEFORE
-            </div>
           </div>
-            <div
-              className="relative rounded-[12px] overflow-hidden"
-              style={{ height: "min(55vh, 420px)" }}
-            >
+          
+            <div className="relative rounded-[12px] overflow-hidden w-full aspect-[4/3]">
               <img
                 src={item.after}
                 alt="After"
-                className="absolute inset-0 w-full h-full object-cover object-top"
+                className="absolute inset-0 w-full h-full object-cover object-center"
                 loading="lazy"
                 decoding="async"
-              />
-            <div
-              className="absolute bottom-0 left-0 right-0 py-2 text-center text-[12px] uppercase tracking-wider"
-              style={{
-                fontFamily: "Lato, sans-serif",
-                backgroundColor: "rgba(165,142,85,0.7)",
-                color: "#F9F9F9",
-                fontWeight: 700,
-              }}
-            >
-              AFTER
-            </div>
+              />  
           </div>
         </div>
       </div>
@@ -163,8 +133,7 @@ function FullscreenModal({
 }
 
 export function BeforeAfterSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const { ref, visible } = useInView();
   const [selected, setSelected] = useState<
     (typeof TRANSFORMATIONS)[0] | null
   >(null);
@@ -212,23 +181,12 @@ export function BeforeAfterSection() {
       el.removeEventListener("touchmove", onTouchMove);
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.1 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <>
       <section ref={ref} style={{ backgroundColor: "#F9F9F9" }}>
         {/* Top hero-like banner with headline */}
         <div
-          className="relative px-5 pt-16 pb-12 md:pt-24 md:pb-16"
+          className="relative px-5 pt-12 pb-2 md:pt-16 md:pb-2"
           style={{
             backgroundImage: `url(${bgheader})`,
             backgroundSize: "cover",
@@ -241,9 +199,7 @@ export function BeforeAfterSection() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.75) 100%)",
-              borderBottomLeftRadius: "32px",
-              borderBottomRightRadius: "32px",
+                "linear-gradient(180deg, rgba(241, 241, 241, 0.43) 0%, rgba(255, 255, 255, 0.75) 100%)",
             }}
           />
           <div
@@ -264,21 +220,21 @@ export function BeforeAfterSection() {
                 color: "#A58E55",
               }}
             >
-              Porcelain Veneers Mexico Before and After
+              Before and After Dental Crowns in Mexico
             </h2>
             <h3
               className="text-[40px] md:text-[48px] leading-[1.1] mb-4"
               style={{
                 fontFamily: "Oswald, sans-serif",
-                color: "#F9F9F9",
+                color: "#21201E",
                 fontWeight: 300,
               }}
             >
-              Real Smiles.{" "}
+              Real Smile Transformations That {" "}
               <span
-                style={{ fontWeight: 700, color: "#C4A96A" }}
+                style={{ fontWeight: 700, color: "#8f7a49" }}
               >
-                Real Transformations.
+                Build Confidence.
               </span>
             </h3>
             <p
@@ -286,12 +242,11 @@ export function BeforeAfterSection() {
               style={{
                 fontFamily: "Lato, sans-serif",
                 fontWeight: 300,
-                color: "rgba(249,249,249,0.95)",
+                color: "#21201E",
                 maxWidth: "700px",
               }}
             >
-              See before and after dental veneers in Mexico from real patients who trusted our expert team. 
-              Discover how porcelain veneers can completely transform shape, color, alignment, and smile confidence.
+              See how dental crowns in Mexico transform smiles with natural-looking, confidence-boosting results trusted by international patients.
             </p>
           </div>
         </div>
@@ -444,79 +399,26 @@ function TransformCard({
       }}
       onClick={onClick}
     >
-      <div
-        className="grid grid-cols-2"
-        style={{ height: mobile ? "240px" : "280px" }}
-      >
-        <div className="relative">
+      <div className="grid grid-cols-1">
+        <div className="relative" style={{ height: mobile ? "120px" : "160px" }}>
           <img
             src={item.before}
             alt="Before"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
             loading="lazy"
             decoding="async"
           />
-          <div
-            className="absolute bottom-0 left-0 right-0 py-1.5 text-center"
-            style={{
-              backgroundColor: "rgba(0,0,0,0.55)",
-              fontFamily: "Lato, sans-serif",
-              color: "#ccc",
-              fontSize: "10px",
-              fontWeight: 700,
-              letterSpacing: "0.12em",
-            }}
-          >
-            BEFORE
-          </div>
+
         </div>
-        <div className="relative">
+        <div className="relative" style={{ height: mobile ? "120px" : "160px" }}>
           <img
             src={item.after}
             alt="After"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
             loading="lazy"
             decoding="async"
           />
-          <div
-            className="absolute bottom-0 left-0 right-0 py-1.5 text-center"
-            style={{
-              backgroundColor: "rgba(165,142,85,0.75)",
-              fontFamily: "Lato, sans-serif",
-              color: "#fff",
-              fontSize: "10px",
-              fontWeight: 700,
-              letterSpacing: "0.12em",
-            }}
-          >
-            AFTER
-          </div>
         </div>
-      </div>
-
-      <div
-        className="px-3 py-3"
-        style={{ backgroundColor: "#21201E" }}
-      >
-        <p
-          className="text-[16px]"
-          style={{
-            fontFamily: "Oswald, sans-serif",
-            color: "#F9F9F9",
-            fontWeight: 500,
-          }}
-        >
-          {item.label}
-        </p>
-        <p
-          className="text-[14px]"
-          style={{
-            fontFamily: "Lato, sans-serif",
-            color: "#A58E55",
-          }}
-        >
-          {item.treatment}
-        </p>
       </div>
     </div>
   );

@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { Star, Smile, TrendingDown } from "lucide-react";
 import { QuoteModal } from "./QuoteModal";
 import bg_hero from "../../imports/bg-hero.webp";
+import video_hero from "../../imports/vide_hero_mobile.mp4";
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1611166819595-ac34987dfa57?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBzbWlsZSUyMGJlYXV0aWZ1bCUyMHRlZXRoJTIwd29tYW58ZW58MXx8fHwxNzc2ODc4MTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080";
 
 export function HeroSection() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,7 +37,7 @@ export function HeroSection() {
           {/* Mobile: autoplay video */}
           <video
             className="block md:hidden w-full h-full object-cover"
-            src="/hero-video.mp4"
+            src={video_hero}
 
             autoPlay
             muted
@@ -68,7 +67,7 @@ export function HeroSection() {
               "opacity 0.9s ease, transform 0.9s ease",
           }}
         >
-          <div className="w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pb-10 md:pb-16">
+          <div className="w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pb-0 md:pb-16">
             <div className="flex flex-col md:flex-row md:items-end md:gap-12 lg:gap-20">
               {/* Left — headline + CTA */}
               <div className="flex-1 mb-6 md:mb-0">
@@ -79,7 +78,7 @@ export function HeroSection() {
                     color: "#FFFFFF",
                   }}
                 >
-                  Get Dental Veneers in Mexico
+                  Dental Crowns in Mexico
                 </h1>
                 <h2
                   className="text-[44px] md:text-[56px] lg:text-[64px] leading-[1.05] mb-5"
@@ -89,16 +88,15 @@ export function HeroSection() {
                     fontWeight: 300,
                   }}
                 >
-                  Get The{" "}
+                  High-Quality, Affordable{" "}
                   <span
                     style={{
                       fontWeight: 700,
                       color: "#C4A96A",
                     }}
                   >
-                    Smile
-                  </span>{" "}
-                  You've Always Wanted
+                    Smile Restoration
+                  </span>
                 </h2>
                 <p
                   className="text-[18px] md:text-[20px] pb-4 leading-[1.05]"
@@ -109,7 +107,7 @@ export function HeroSection() {
                     maxWidth: "560px",
                   }}
                 >
-                  Discover dental veneers in Mexico, porcelain veneers Cancun, transparent veneers cost in Mexico, and expert smile design results.
+                  Restore your smile with <b>high-quality dental crowns in Mexico</b> and enjoy <b>natural-looking results at affordable prices.</b>
                 </p>
                 <button
                   onClick={() => setModalOpen(true)}

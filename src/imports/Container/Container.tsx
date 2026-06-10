@@ -1,5 +1,5 @@
 import svgPaths from "./svg-ustnnnn2kn";
-import imgRectangle43 from "./312a3bc3bd20368a12a790b825e38b30c0a2e9f7.png";
+import imgRectangle43 from "./312a3bc3bd20368a12a790b825e38b30c0a2e9f7.webp";
 
 function Frame() {
   return (
