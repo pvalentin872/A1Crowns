@@ -116,7 +116,6 @@ export function FaqsSection() {
             <span style={{ fontWeight: 700, color: "#C4A96A" }}>
               Know
             </span>
-            
           </h2>
         </div>
 
